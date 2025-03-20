@@ -11,8 +11,7 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
-  const { cartItems, removeFromCart, updateCartItemQuantity, getTotalPrice, getTotalItems } = useCart();
-  const [isOpen, setIsOpen] = useState(false);
+  const { cartItems, removeFromCart, updateQuantity, totalPrice, totalItems, isCartOpen, toggleCart, openCart, closeCart } = useCart();
   const [animation, setAnimation] = useState('');
   
   // Apply animated effect when cart items change
@@ -51,7 +50,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
       `${item.quantity}x ${item.name} (${getCurrencySymbol(currency)}${(item.price * item.quantity).toFixed(2)})`
     ).join("\n");
     
-    const totalText = `\nTotal: ${getCurrencySymbol(currency)}${getTotalPrice().toFixed(2)}`;
+    const totalText = `\nTotal: ${getCurrencySymbol(currency)}${totalPrice.toFixed(2)}`;
     
     const fullMessage = `${message}\n\n${itemsText}${totalText}`;
     
@@ -61,7 +60,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
   return (
     <>
       {/* Floating cart button */}
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <Sheet open={isCartOpen} onOpenChange={toggleCart}>
         <SheetTrigger asChild>
           <Button 
             className={`fixed bottom-6 left-6 rounded-full p-4 h-auto w-auto bg-food-primary hover:bg-food-secondary text-white shadow-button transition-all duration-300 ${animation}`}
@@ -69,9 +68,9 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
           >
             <div className="relative">
               <ShoppingBag className="h-5 w-5" />
-              {getTotalItems() > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 bg-food-secondary text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {getTotalItems()}
+                  {totalItems}
                 </span>
               )}
             </div>
@@ -96,7 +95,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
                 variant="outline" 
                 size="sm"
                 className="border-food-primary text-food-primary hover:bg-food-light"
-                onClick={() => setIsOpen(false)}
+                onClick={() => closeCart()}
               >
                 Continue Shopping
               </Button>
@@ -129,7 +128,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
                             className="w-6 h-6 rounded-full flex items-center justify-center bg-gray-100 text-gray-600 hover:bg-food-light hover:text-food-primary transition-colors"
                             onClick={() => {
                               if (item.quantity > 1) {
-                                updateCartItemQuantity(item.id, item.quantity - 1);
+                                updateQuantity(item.id, item.quantity - 1);
                               } else {
                                 removeFromCart(item.id);
                               }
@@ -144,7 +143,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
                           
                           <button 
                             className="w-6 h-6 rounded-full flex items-center justify-center bg-food-primary text-white hover:bg-food-secondary transition-colors"
-                            onClick={() => updateCartItemQuantity(item.id, item.quantity + 1)}
+                            onClick={() => updateQuantity(item.id, item.quantity + 1)}
                           >
                             <Plus className="h-3 w-3" />
                           </button>
@@ -176,7 +175,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
                 <div className="flex justify-between mb-4">
                   <span className="font-medium">Total</span>
                   <span className="font-bold text-lg">
-                    {getCurrencySymbol(currency)}{getTotalPrice().toFixed(2)}
+                    {getCurrencySymbol(currency)}{totalPrice.toFixed(2)}
                   </span>
                 </div>
                 
@@ -191,7 +190,7 @@ const Cart: React.FC<CartProps> = ({ currency = "dollar" }) => {
                 <Button 
                   variant="outline" 
                   className="w-full mt-2"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => closeCart()}
                 >
                   Continue Shopping
                 </Button>

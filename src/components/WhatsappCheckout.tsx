@@ -15,7 +15,7 @@ const WhatsappCheckout: React.FC<WhatsappCheckoutProps> = ({
   message = "Hello, I would like to place an order:",
   currency = "dollar"
 }) => {
-  const { cartItems, getTotalPrice } = useCart();
+  const { cartItems, totalPrice } = useCart();
   
   const generateWhatsAppLink = () => {
     if (cartItems.length === 0) return "#";
@@ -24,7 +24,7 @@ const WhatsappCheckout: React.FC<WhatsappCheckoutProps> = ({
       `${item.quantity}x ${item.name} (${getCurrencySymbol(currency)}${(item.price * item.quantity).toFixed(2)})`
     ).join("\n");
     
-    const totalText = `\nTotal: ${getCurrencySymbol(currency)}${getTotalPrice().toFixed(2)}`;
+    const totalText = `\nTotal: ${getCurrencySymbol(currency)}${totalPrice.toFixed(2)}`;
     
     const fullMessage = `${message}\n\n${itemsText}${totalText}`;
     

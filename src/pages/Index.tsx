@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import Navbar from '@/components/Navbar';
@@ -129,7 +128,7 @@ const Index = () => {
   return (
     <CartProvider>
       <div className="min-h-screen flex flex-col">
-        <Navbar branName="Trendy Food" />
+        <Navbar brandName="Trendy Food" />
         
         <main className="flex-1">
           {/* Hero Section */}

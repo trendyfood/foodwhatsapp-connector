@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -182,9 +181,13 @@ const FoodManager = () => {
       }
       
       const foodData = {
-        ...formData,
-        image: imageUrl,
-        price: Number(formData.price)
+        name: formData.name || '',
+        description: formData.description || '',
+        price: Number(formData.price || 0),
+        image: imageUrl || '',
+        category: formData.category || '',
+        tags: formData.tags || [],
+        popular: formData.popular || false
       };
       
       let result;

@@ -2,100 +2,88 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '../context/CartContext';
-import { Send } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-const WhatsappCheckout: React.FC = () => {
-  const { totalItems, totalPrice, cartItems } = useCart();
+interface WhatsappCheckoutProps {
+  phone?: string;
+  message?: string;
+  currency?: string;
+}
 
-  const handleWhatsAppCheckout = () => {
-    if (cartItems.length === 0) return;
-
-    // Create the order message
-    let message = "Hello! I'd like to place an order:\n\n";
+const WhatsappCheckout: React.FC<WhatsappCheckoutProps> = ({ 
+  phone = "1234567890",
+  message = "Hello, I would like to place an order:",
+  currency = "dollar"
+}) => {
+  const { cartItems, getTotalPrice } = useCart();
+  
+  const generateWhatsAppLink = () => {
+    if (cartItems.length === 0) return "#";
     
-    cartItems.forEach(item => {
-      message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
-    });
+    const itemsText = cartItems.map(item => 
+      `${item.quantity}x ${item.name} (${getCurrencySymbol(currency)}${(item.price * item.quantity).toFixed(2)})`
+    ).join("\n");
     
-    message += `\nTotal: $${totalPrice.toFixed(2)}`;
-    message += `\n\nPlease confirm my order. Thank you!`;
+    const totalText = `\nTotal: ${getCurrencySymbol(currency)}${getTotalPrice().toFixed(2)}`;
     
-    // Encode the message for a URL
-    const encodedMessage = encodeURIComponent(message);
+    const fullMessage = `${message}\n\n${itemsText}${totalText}`;
     
-    // Open WhatsApp with the pre-filled message
-    // Note: In a real application, you would replace '1234567890' with the actual business phone number
-    window.open(`https://wa.me/1234567890?text=${encodedMessage}`, '_blank');
+    return `https://wa.me/${phone}?text=${encodeURIComponent(fullMessage)}`;
+  };
+  
+  const getCurrencySymbol = (currencyName: string) => {
+    switch (currencyName.toLowerCase()) {
+      case 'dollar':
+        return '$';
+      case 'euro':
+        return '€';
+      case 'pound':
+        return '£';
+      case 'yen':
+        return '¥';
+      case 'naira':
+        return '₦';
+      default:
+        return '$';
+    }
   };
 
   return (
-    <div className="py-12 px-4 bg-gradient-to-r from-food-primary/10 to-food-secondary/5">
-      <div className="max-w-7xl mx-auto py-12 px-6 lg:px-8 bg-white rounded-3xl shadow-elegant">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-food-dark mb-4">Ready to place your order?</h2>
-          <p className="text-food-muted max-w-2xl mx-auto">
-            We'll take you straight to WhatsApp to confirm your order. No account creation or long checkout forms.
-          </p>
+    <section className="py-20 px-4 text-center bg-gradient-to-br from-food-primary/10 via-white to-food-secondary/5">
+      <div className="max-w-4xl mx-auto space-y-6">
+        <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full">
+          <span className="text-sm font-medium">Easy Ordering</span>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:divide-x">
-          <div className="flex flex-col items-center p-4">
-            <div className="w-16 h-16 rounded-full bg-food-light flex items-center justify-center text-food-primary mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-food-dark mb-2">Select Your Items</h3>
-            <p className="text-food-muted text-center">Browse our menu and add items to your cart</p>
-          </div>
-          
-          <div className="flex flex-col items-center p-4">
-            <div className="w-16 h-16 rounded-full bg-food-light flex items-center justify-center text-food-primary mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-food-dark mb-2">Checkout via WhatsApp</h3>
-            <p className="text-food-muted text-center">Your order details will be sent directly through WhatsApp</p>
-          </div>
-          
-          <div className="flex flex-col items-center p-4">
-            <div className="w-16 h-16 rounded-full bg-food-light flex items-center justify-center text-food-primary mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-food-dark mb-2">Confirm Your Order</h3>
-            <p className="text-food-muted text-center">Confirm details with our team and schedule delivery</p>
-          </div>
-        </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-food-dark">Ready to Order?</h2>
         
-        <div className="mt-12 text-center">
-          <div className="inline-flex items-center justify-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full mb-4">
-            <span className="text-sm font-medium">
-              {totalItems > 0 
-                ? `Your cart: ${totalItems} item${totalItems !== 1 ? 's' : ''} ($${totalPrice.toFixed(2)})`
-                : 'Your cart is empty'
-              }
+        <p className="text-food-muted max-w-2xl mx-auto">
+          Ordering is simple! Add items to your cart and click the button below to complete your order via WhatsApp.
+        </p>
+        
+        <Button
+          size="lg"
+          className={`mt-8 bg-green-600 hover:bg-green-700 text-white px-6 py-6 h-auto rounded-xl shadow-button transform transition-all duration-300 hover:scale-105 text-base ${cartItems.length === 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={cartItems.length === 0}
+          asChild
+        >
+          <a href={generateWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+            <span className="flex items-center gap-2">
+              <svg viewBox="0 0 32 32" className="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.901 1.392 7.471 3.704 10.237L1.281 32l5.893-2.416C9.903 31.728 12.827 33 16.004 33 24.83 33 32 25.824 32 17S24.83 0 16.004 0z" fill="#fff"/>
+                <path d="M25.301 22.473c-.467 1.317-2.332 2.412-3.812 2.729-1.013.213-2.339.382-6.801-1.457-5.699-2.35-9.368-8.099-9.652-8.473-.267-.373-2.253-2.993-2.253-5.709 0-2.715 1.4-4.038 1.893-4.6.467-.534 1.227-.801 1.96-.801.467 0 .934.053 1.333.08.587.053 1.36.213 2.12 1.627.24.427 1.12 2.752 1.52 3.705.267.654.44 1.454.133 1.974-.267.56-1.027 1.281-1.427 1.761-1.066 1.12-.771 2.063.133 3.544 1.333 2.195 2.853 3.769 4.586 4.783 1.173.684 2.64 1.42 3.066.92.613-.721 2.246-2.622 2.906-3.596.801-1.174 2.28-.88 3.066-.614 1.173.374 3.066 1.441 3.599 1.788.533.347.854.534.98 1.094.134.535-.32 1.709-.786 3.025z" fill="#65b03d"/>
+              </svg>
+              Complete Order via WhatsApp
+              <ArrowRight className="h-5 w-5" />
             </span>
-          </div>
-          
-          <Button 
-            size="lg"
-            onClick={handleWhatsAppCheckout}
-            disabled={totalItems === 0}
-            className="bg-[#25D366] hover:bg-[#128C7E] text-white transition-all duration-300 rounded-xl shadow-button btn-shine px-8"
-          >
-            <span className="mr-2">Order via WhatsApp</span>
-            <Send className="h-5 w-5" />
-          </Button>
-          
-          <p className="mt-4 text-sm text-food-muted">
-            No account required. We'll respond within minutes.
-          </p>
-        </div>
+          </a>
+        </Button>
+        
+        {cartItems.length === 0 && (
+          <p className="text-sm text-gray-500 mt-2">Add items to your cart first</p>
+        )}
       </div>
-    </div>
+    </section>
   );
 };
 

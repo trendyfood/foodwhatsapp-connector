@@ -3,17 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface HeroProps {
-  title?: string;
-  description?: string;
-  bannerImage?: string;
-}
-
-const Hero: React.FC<HeroProps> = ({ 
-  title = "FoodOrder", 
-  description = "Delicious Food Delivered Fast",
-  bannerImage = "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1400&auto=format&fit=crop"
-}) => {
+const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,8 +40,8 @@ const Hero: React.FC<HeroProps> = ({
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-food-dark leading-tight animate-fade-up" style={{ animationDelay: '0.4s' }}>
-              {title} <br />
-              <span className="text-food-primary">{description}</span>
+              Delicious Food <br />
+              <span className="text-food-primary">Delivered Fast</span>
             </h1>
             
             <p className="text-food-muted text-lg max-w-md animate-fade-up" style={{ animationDelay: '0.6s' }}>
@@ -99,7 +89,7 @@ const Hero: React.FC<HeroProps> = ({
         <div className="order-1 md:order-2 relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] relative rounded-3xl overflow-hidden shadow-soft-lg">
             <img 
-              src={bannerImage} 
+              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1400&auto=format&fit=crop" 
               alt="Delicious Food" 
               className="w-full h-full object-cover"
             />

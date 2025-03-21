@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import Navbar from '@/components/Navbar';
@@ -7,84 +8,14 @@ import FoodCard from '@/components/FoodCard';
 import Cart from '@/components/Cart';
 import WhatsappCheckout from '@/components/WhatsappCheckout';
 import { CartProvider } from '@/context/CartContext';
+import { foodItems } from '@/assets/food-data';
 import { ArrowUp } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
-
-// Define interfaces for our data
-interface FoodItem {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  tags: string[];
-  popular: boolean;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  icon: string;
-}
-
-interface BannerImage {
-  id: string;
-  image_url: string;
-  title: string | null;
-  description: string | null;
-  active: boolean;
-}
 
 const Index = () => {
   const { toast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [banners, setBanners] = useState<BannerImage[]>([]);
-  const [filteredItems, setFilteredItems] = useState<FoodItem[]>([]);
+  const [filteredItems, setFilteredItems] = useState(foodItems);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch data from Supabase
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch food items
-        const { data: foodData, error: foodError } = await supabase
-          .from('food_items')
-          .select('*');
-        
-        if (foodError) throw foodError;
-        
-        // Fetch categories
-        const { data: categoryData, error: categoryError } = await supabase
-          .from('categories')
-          .select('*');
-        
-        if (categoryError) throw categoryError;
-        
-        // Fetch active banners
-        const { data: bannerData, error: bannerError } = await supabase
-          .from('banner_images')
-          .select('*')
-          .eq('active', true);
-        
-        if (bannerError) throw bannerError;
-        
-        setFoodItems(foodData || []);
-        setCategories(categoryData || []);
-        setBanners(bannerData || []);
-        setLoading(false);
-      } catch (error: any) {
-        console.error('Error fetching data:', error);
-        // Use fallback data if available
-        setLoading(false);
-      }
-    };
-    
-    fetchData();
-  }, []);
 
   // Apply category filter
   useEffect(() => {
@@ -93,7 +24,7 @@ const Index = () => {
     } else {
       setFilteredItems(foodItems.filter(item => item.category === selectedCategory));
     }
-  }, [selectedCategory, foodItems]);
+  }, [selectedCategory]);
 
   // Scroll to top button visibility
   useEffect(() => {
@@ -116,7 +47,7 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       toast({
-        title: "Welcome to Trendy Food!",
+        title: "Welcome to FoodOrder!",
         description: "Browse our menu and order directly via WhatsApp.",
         duration: 5000,
       });
@@ -132,11 +63,7 @@ const Index = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <Hero 
-            title="Trendy Food" 
-            description="Delicious Food Delivered Fast" 
-            bannerImage={banners.length > 0 ? banners[0].image_url : undefined} 
-          />
+          <Hero />
           
           {/* Menu Section */}
           <section id="menu" className="py-12 px-4 max-w-7xl mx-auto">
@@ -154,24 +81,17 @@ const Index = () => {
             <FoodCategories 
               selectedCategory={selectedCategory}
               onSelectCategory={setSelectedCategory}
-              categories={categories}
             />
             
             {/* Food Items Grid */}
-            {loading ? (
-              <div className="flex justify-center items-center py-20">
-                <div className="w-12 h-12 border-4 border-food-primary/30 border-t-food-primary rounded-full animate-spin"></div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
-                {filteredItems.map((item) => (
-                  <FoodCard key={item.id} food={item} />
-                ))}
-              </div>
-            )}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-8">
+              {filteredItems.map((item) => (
+                <FoodCard key={item.id} food={item} />
+              ))}
+            </div>
             
             {/* Empty state */}
-            {!loading && filteredItems.length === 0 && (
+            {filteredItems.length === 0 && (
               <div className="text-center py-12">
                 <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-food-light flex items-center justify-center text-food-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -185,30 +105,28 @@ const Index = () => {
           </section>
           
           {/* Popular Items Section */}
-          {foodItems.some(item => item.popular) && (
-            <section id="popular" className="py-12 px-4 bg-food-light">
-              <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center space-x-2 bg-white text-food-primary px-4 py-2 rounded-full mb-4">
-                    <span className="text-sm font-medium">Customer Favorites</span>
-                  </div>
-                  <h2 className="text-3xl font-bold text-food-dark mb-2">Most Popular Items</h2>
-                  <p className="text-food-muted max-w-2xl mx-auto">
-                    Our customers' favorite dishes that you don't want to miss.
-                  </p>
+          <section id="popular" className="py-12 px-4 bg-food-light">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center space-x-2 bg-white text-food-primary px-4 py-2 rounded-full mb-4">
+                  <span className="text-sm font-medium">Customer Favorites</span>
                 </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {foodItems.filter(item => item.popular).map((item) => (
-                    <FoodCard key={item.id} food={item} />
-                  ))}
-                </div>
+                <h2 className="text-3xl font-bold text-food-dark mb-2">Most Popular Items</h2>
+                <p className="text-food-muted max-w-2xl mx-auto">
+                  Our customers' favorite dishes that you don't want to miss.
+                </p>
               </div>
-            </section>
-          )}
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {foodItems.filter(item => item.popular).map((item) => (
+                  <FoodCard key={item.id} food={item} />
+                ))}
+              </div>
+            </div>
+          </section>
           
           {/* Checkout Section */}
-          <WhatsappCheckout currency="naira" />
+          <WhatsappCheckout />
           
           {/* About Section */}
           <section id="about" className="py-16 px-4 max-w-7xl mx-auto">
@@ -245,7 +163,7 @@ const Index = () => {
               <div className="relative">
                 <div className="rounded-3xl overflow-hidden shadow-soft-lg">
                   <img 
-                    src={banners.length > 1 ? banners[1].image_url : "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop"} 
+                    src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop" 
                     alt="Restaurant interior" 
                     className="w-full h-full object-cover aspect-[4/3]"
                   />
@@ -300,7 +218,7 @@ const Index = () => {
                     </svg>
                   </div>
                   <h3 className="font-semibold text-food-dark mb-2">Email</h3>
-                  <p className="text-food-primary">info@trendyfood.com</p>
+                  <p className="text-food-primary">info@foodorder.com</p>
                 </div>
                 
                 <div className="bg-white p-6 rounded-xl shadow-soft">
@@ -323,8 +241,8 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               <div>
                 <div className="text-2xl font-bold mb-4">
-                  <span className="text-food-primary">Trendy</span>
-                  <span className="text-food-secondary">Food</span>
+                  <span className="text-food-primary">Food</span>
+                  <span className="text-food-secondary">Order</span>
                 </div>
                 <p className="text-gray-400 mb-4">
                   Delicious food delivered to your door. Order via WhatsApp for a seamless experience.
@@ -355,24 +273,17 @@ const Index = () => {
                   <li><a href="#menu" className="text-gray-400 hover:text-white transition-colors">Menu</a></li>
                   <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
                   <li><a href="#contact" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                  <li><a href="/admin" className="text-gray-400 hover:text-white transition-colors">Admin</a></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="text-white font-semibold mb-4">Categories</h3>
                 <ul className="space-y-2">
-                  {categories.slice(0, 5).map(category => (
-                    <li key={category.id}>
-                      <a 
-                        href={`#menu`} 
-                        onClick={() => setSelectedCategory(category.id)}
-                        className="text-gray-400 hover:text-white transition-colors"
-                      >
-                        {category.name}
-                      </a>
-                    </li>
-                  ))}
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Burgers</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pizza</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sushi</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pasta</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Desserts</a></li>
                 </ul>
               </div>
               
@@ -396,7 +307,7 @@ const Index = () => {
             </div>
             
             <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-              <p>© {new Date().getFullYear()} Trendy Food. All rights reserved.</p>
+              <p>© 2023 FoodOrder. All rights reserved.</p>
             </div>
           </div>
         </footer>
@@ -413,7 +324,7 @@ const Index = () => {
         )}
         
         {/* Cart Component */}
-        <Cart currency="naira" />
+        <Cart />
       </div>
     </CartProvider>
   );

@@ -1,24 +1,17 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+import { categories } from '../assets/food-data';
 import { cn } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-
-interface Category {
-  id: string;
-  name: string;
-  icon: string;
-}
 
 interface FoodCategoriesProps {
   selectedCategory: string;
   onSelectCategory: (categoryId: string) => void;
-  categories?: Category[];
 }
 
 const FoodCategories: React.FC<FoodCategoriesProps> = ({ 
   selectedCategory, 
-  onSelectCategory,
-  categories = []
+  onSelectCategory 
 }) => {
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(true);

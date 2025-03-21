@@ -9,138 +9,16 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      banner_images: {
-        Row: {
-          active: boolean | null
-          created_at: string
-          description: string | null
-          id: string
-          image_url: string
-          slide_order: number | null
-          title: string | null
-          updated_at: string
-        }
-        Insert: {
-          active?: boolean | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          image_url: string
-          slide_order?: number | null
-          title?: string | null
-          updated_at?: string
-        }
-        Update: {
-          active?: boolean | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          image_url?: string
-          slide_order?: number | null
-          title?: string | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      categories: {
-        Row: {
-          created_at: string
-          icon: string
-          id: string
-          name: string
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          icon: string
-          id: string
-          name: string
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          icon?: string
-          id?: string
-          name?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      food_items: {
-        Row: {
-          category: string
-          created_at: string
-          description: string
-          id: string
-          image: string
-          name: string
-          popular: boolean | null
-          price: number
-          tags: string[] | null
-          updated_at: string
-        }
-        Insert: {
-          category: string
-          created_at?: string
-          description: string
-          id?: string
-          image: string
-          name: string
-          popular?: boolean | null
-          price: number
-          tags?: string[] | null
-          updated_at?: string
-        }
-        Update: {
-          category?: string
-          created_at?: string
-          description?: string
-          id?: string
-          image?: string
-          name?: string
-          popular?: boolean | null
-          price?: number
-          tags?: string[] | null
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      user_roles: {
-        Row: {
-          created_at: string
-          id: string
-          role: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          role?: Database["public"]["Enums"]["app_role"]
-          user_id?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          user_id: string
-          required_role: Database["public"]["Enums"]["app_role"]
-        }
-        Returns: boolean
-      }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "user"
+      [_ in never]: never
     }
     CompositeTypes: {
       [_ in never]: never

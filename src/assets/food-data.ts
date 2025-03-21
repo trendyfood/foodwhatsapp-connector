@@ -60,7 +60,7 @@ export const foodItems: FoodItem[] = [
     name: 'Classic Cheeseburger',
     description: 'Juicy beef patty with melted cheddar, fresh lettuce, tomato, and our secret sauce.',
     price: 12.99,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop',
+    image: 'https://www.istockphoto.com/photo/beans-lentils-peas',
     category: 'burgers',
     tags: ['beef', 'cheese', 'classic'],
     popular: true,

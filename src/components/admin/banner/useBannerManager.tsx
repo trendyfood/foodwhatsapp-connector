@@ -59,6 +59,32 @@ export const useBannerManager = () => {
     setIsEditing(true);
   };
 
+  const deleteAllBannerPolicies = async () => {
+    try {
+      // First check if there are any banners
+      const { data: bannersData, error: bannersError } = await supabase
+        .from('banner_images')
+        .select('count');
+        
+      if (bannersError) throw bannersError;
+      
+      // Delete all banners to reset
+      if (bannersData && bannersData.length > 0) {
+        const { error: deleteError } = await supabase
+          .from('banner_images')
+          .delete()
+          .gte('id', '0'); // This ensures we delete all rows
+          
+        if (deleteError) throw deleteError;
+      }
+      
+      return true;
+    } catch (error) {
+      console.error("Error deleting banners:", error);
+      return false;
+    }
+  };
+
   useEffect(() => {
     fetchBanners();
   }, []);
@@ -76,6 +102,7 @@ export const useBannerManager = () => {
     setFormData,
     fetchBanners,
     resetForm,
-    handleEdit
+    handleEdit,
+    deleteAllBannerPolicies
   };
 };

@@ -91,7 +91,7 @@ export const useCategoryManager = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.id || !formData.name || !formData.icon) {
+    if (!formData.name || !formData.icon) {
       toast({
         title: "Missing information",
         description: "Please fill all required fields",
@@ -104,45 +104,27 @@ export const useCategoryManager = () => {
     
     try {
       const categoryData = {
-        id: formData.id,
         name: formData.name,
         icon: formData.icon
       };
       
       let result;
       
-      if (isEditing) {
-        console.log("Updating category:", categoryData);
+      if (isEditing && formData.id) {
+        console.log("Updating category:", formData);
         // Update existing category
         result = await supabase
           .from('categories')
-          .update({
-            name: categoryData.name,
-            icon: categoryData.icon
-          })
-          .eq('id', categoryData.id);
+          .update(categoryData)
+          .eq('id', formData.id);
       } else {
-        // Check if ID already exists
-        const { data } = await supabase
-          .from('categories')
-          .select('id')
-          .eq('id', formData.id)
-          .single();
-        
-        if (data) {
-          toast({
-            title: "ID already exists",
-            description: "Please use a different ID for the new category",
-            variant: "destructive",
-          });
-          setSubmitting(false);
-          return;
-        }
-        
-        // Insert new category
+        // Insert new category with the ID provided
         result = await supabase
           .from('categories')
-          .insert([categoryData]);
+          .insert([{
+            id: formData.id,
+            ...categoryData
+          }]);
       }
       
       if (result.error) throw result.error;

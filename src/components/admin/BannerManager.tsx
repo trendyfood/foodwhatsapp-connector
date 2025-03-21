@@ -10,7 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
-import { Pencil, Trash2, Image, Eye } from 'lucide-react';
+import { Pencil, Trash2, Image, Eye, MoveUp, MoveDown } from 'lucide-react';
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 interface BannerImage {
   id: string;
@@ -18,6 +19,7 @@ interface BannerImage {
   title: string | null;
   description: string | null;
   active: boolean;
+  slide_order: number;
 }
 
 const BannerManager = () => {
@@ -27,13 +29,15 @@ const BannerManager = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [limitReached, setLimitReached] = useState(false);
   const { toast } = useToast();
   
   const [formData, setFormData] = useState<Partial<BannerImage>>({
     image_url: '',
     title: '',
     description: '',
-    active: true
+    active: true,
+    slide_order: 0
   });
 
   useEffect(() => {
@@ -45,11 +49,12 @@ const BannerManager = () => {
       const { data, error } = await supabase
         .from('banner_images')
         .select('*')
-        .order('created_at', { ascending: false });
+        .order('slide_order', { ascending: true });
       
       if (error) throw error;
       
       setBanners(data || []);
+      setLimitReached(data && data.length >= 5);
     } catch (error: any) {
       console.error('Error fetching banners:', error);
       toast({
@@ -67,7 +72,8 @@ const BannerManager = () => {
       image_url: '',
       title: '',
       description: '',
-      active: true
+      active: true,
+      slide_order: banners.length > 0 ? Math.max(...banners.map(banner => banner.slide_order || 0)) + 1 : 0
     });
     setImageFile(null);
     setImagePreview('');
@@ -100,6 +106,7 @@ const BannerManager = () => {
       if (error) throw error;
       
       setBanners(banners.filter(banner => banner.id !== id));
+      setLimitReached(false);
       
       toast({
         title: "Banner deleted",
@@ -137,6 +144,82 @@ const BannerManager = () => {
       toast({
         title: "Error updating banner",
         description: error.message || "Could not update the banner status",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleMoveUp = async (banner: BannerImage, index: number) => {
+    if (index <= 0) return;
+    
+    const prevBanner = banners[index - 1];
+    const prevOrder = prevBanner.slide_order;
+    const currentOrder = banner.slide_order;
+    
+    try {
+      // Update the current banner with the previous banner's order
+      await supabase
+        .from('banner_images')
+        .update({ slide_order: prevOrder })
+        .eq('id', banner.id);
+      
+      // Update the previous banner with the current banner's order
+      await supabase
+        .from('banner_images')
+        .update({ slide_order: currentOrder })
+        .eq('id', prevBanner.id);
+      
+      // Update state
+      const updatedBanners = [...banners];
+      [updatedBanners[index - 1], updatedBanners[index]] = [updatedBanners[index], updatedBanners[index - 1]];
+      setBanners(updatedBanners);
+      
+      toast({
+        title: "Order updated",
+        description: "Banner slide order has been updated",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error updating order",
+        description: error.message || "Could not update the banner order",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleMoveDown = async (banner: BannerImage, index: number) => {
+    if (index >= banners.length - 1) return;
+    
+    const nextBanner = banners[index + 1];
+    const nextOrder = nextBanner.slide_order;
+    const currentOrder = banner.slide_order;
+    
+    try {
+      // Update the current banner with the next banner's order
+      await supabase
+        .from('banner_images')
+        .update({ slide_order: nextOrder })
+        .eq('id', banner.id);
+      
+      // Update the next banner with the current banner's order
+      await supabase
+        .from('banner_images')
+        .update({ slide_order: currentOrder })
+        .eq('id', nextBanner.id);
+      
+      // Update state
+      const updatedBanners = [...banners];
+      [updatedBanners[index], updatedBanners[index + 1]] = [updatedBanners[index + 1], updatedBanners[index]];
+      setBanners(updatedBanners);
+      
+      toast({
+        title: "Order updated",
+        description: "Banner slide order has been updated",
+      });
+    } catch (error: any) {
+      toast({
+        title: "Error updating order",
+        description: error.message || "Could not update the banner order",
         variant: "destructive",
       });
     }
@@ -180,7 +263,8 @@ const BannerManager = () => {
       
       const bannerData = {
         ...formData,
-        image_url: imageUrl
+        image_url: imageUrl,
+        slide_order: formData.slide_order || banners.length
       };
       
       let result;
@@ -210,11 +294,20 @@ const BannerManager = () => {
           : "New banner has been added to the site",
       });
     } catch (error: any) {
-      toast({
-        title: "Error saving banner",
-        description: error.message || "Could not save the banner",
-        variant: "destructive",
-      });
+      // Check for banner limit error
+      if (error.message && error.message.includes('Maximum banner limit')) {
+        toast({
+          title: "Banner limit reached",
+          description: "You can only have a maximum of 5 banner images",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error saving banner",
+          description: error.message || "Could not save the banner",
+          variant: "destructive",
+        });
+      }
     } finally {
       setSubmitting(false);
     }
@@ -226,6 +319,14 @@ const BannerManager = () => {
 
   return (
     <div className="space-y-6">
+      {limitReached && !isEditing && (
+        <Alert className="bg-amber-50 border-amber-200">
+          <AlertDescription>
+            Maximum banner limit (5) reached. Delete an existing banner before adding a new one.
+          </AlertDescription>
+        </Alert>
+      )}
+      
       <Card className="p-6">
         <form onSubmit={handleSubmit}>
           <h2 className="text-xl font-semibold mb-4">
@@ -285,6 +386,21 @@ const BannerManager = () => {
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               />
             </div>
+            
+            <div>
+              <Label htmlFor="slide_order">Slide Order</Label>
+              <Input
+                id="slide_order"
+                type="number"
+                min="0"
+                placeholder="0"
+                value={formData.slide_order || 0}
+                onChange={(e) => setFormData({ ...formData, slide_order: parseInt(e.target.value) })}
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Lower numbers appear first in the slide show
+              </p>
+            </div>
           </div>
           
           <div className="flex justify-end gap-2 mt-6">
@@ -298,7 +414,7 @@ const BannerManager = () => {
             <Button 
               type="submit" 
               className="bg-food-primary hover:bg-food-secondary"
-              disabled={submitting}
+              disabled={submitting || (limitReached && !isEditing)}
             >
               {submitting ? 'Saving...' : (isEditing ? 'Update Banner' : 'Add Banner')}
             </Button>
@@ -309,7 +425,7 @@ const BannerManager = () => {
       <Card>
         <div className="p-4">
           <h2 className="text-xl font-semibold">Banner Images</h2>
-          <p className="text-gray-500 text-sm">Manage banner images for your homepage</p>
+          <p className="text-gray-500 text-sm">Manage banner images for your homepage ({banners.length}/5)</p>
         </div>
         
         <Separator />
@@ -321,18 +437,19 @@ const BannerManager = () => {
                 <TableHead className="w-12">Preview</TableHead>
                 <TableHead>Title</TableHead>
                 <TableHead>Status</TableHead>
+                <TableHead>Order</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {banners.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center py-8 text-gray-500">
+                  <TableCell colSpan={5} className="text-center py-8 text-gray-500">
                     No banner images found. Add your first banner using the form above.
                   </TableCell>
                 </TableRow>
               ) : (
-                banners.map((banner) => (
+                banners.map((banner, index) => (
                   <TableRow key={banner.id}>
                     <TableCell>
                       {banner.image_url ? (
@@ -356,8 +473,25 @@ const BannerManager = () => {
                         <span>{banner.active ? 'Active' : 'Inactive'}</span>
                       </div>
                     </TableCell>
+                    <TableCell>{banner.slide_order}</TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          disabled={index === 0}
+                          onClick={() => handleMoveUp(banner, index)}
+                        >
+                          <MoveUp className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          disabled={index === banners.length - 1}
+                          onClick={() => handleMoveDown(banner, index)}
+                        >
+                          <MoveDown className="h-4 w-4" />
+                        </Button>
                         <Button
                           variant="ghost"
                           size="sm"

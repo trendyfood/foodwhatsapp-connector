@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/components/ui/use-toast';
-import { Plus, Pencil, Trash2, Save, X } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 
 interface Category {
   id: string;
@@ -19,6 +19,7 @@ interface Category {
 const CategoryManager = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { toast } = useToast();
   
@@ -64,7 +65,12 @@ const CategoryManager = () => {
   };
 
   const handleEdit = (category: Category) => {
-    setFormData(category);
+    console.log("Editing category:", category);
+    setFormData({
+      id: category.id,
+      name: category.name,
+      icon: category.icon
+    });
     setIsEditing(true);
   };
 
@@ -106,7 +112,7 @@ const CategoryManager = () => {
       return;
     }
     
-    setLoading(true);
+    setSubmitting(true);
     
     try {
       const categoryData = {
@@ -118,11 +124,15 @@ const CategoryManager = () => {
       let result;
       
       if (isEditing) {
+        console.log("Updating category:", categoryData);
         // Update existing category
         result = await supabase
           .from('categories')
-          .update(categoryData)
-          .eq('id', formData.id);
+          .update({
+            name: categoryData.name,
+            icon: categoryData.icon
+          })
+          .eq('id', categoryData.id);
       } else {
         // Check if ID already exists
         const { data } = await supabase
@@ -137,7 +147,7 @@ const CategoryManager = () => {
             description: "Please use a different ID for the new category",
             variant: "destructive",
           });
-          setLoading(false);
+          setSubmitting(false);
           return;
         }
         
@@ -165,7 +175,7 @@ const CategoryManager = () => {
         variant: "destructive",
       });
     } finally {
-      setLoading(false);
+      setSubmitting(false);
     }
   };
 
@@ -233,9 +243,9 @@ const CategoryManager = () => {
             <Button 
               type="submit" 
               className="bg-food-primary hover:bg-food-secondary"
-              disabled={loading}
+              disabled={submitting}
             >
-              {loading ? 'Saving...' : (isEditing ? 'Update Category' : 'Add Category')}
+              {submitting ? 'Saving...' : (isEditing ? 'Update Category' : 'Add Category')}
             </Button>
           </div>
         </form>

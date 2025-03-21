@@ -128,7 +128,7 @@ const Index = () => {
   return (
     <CartProvider>
       <div className="min-h-screen flex flex-col">
-        <Navbar brandName="Trendy Food" />
+        <Navbar />
         
         <main className="flex-1">
           {/* Hero Section */}

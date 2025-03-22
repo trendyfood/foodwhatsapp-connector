@@ -55,7 +55,7 @@ const FoodCard: React.FC<FoodCardProps> = ({ food }) => {
           <h3 className="font-semibold text-food-dark group-hover:text-food-primary transition-colors duration-300">
             {food.name}
           </h3>
-          <div className="text-food-primary font-bold">${food.price.toFixed(2)}</div>
+          <div className="text-food-primary font-bold">₦{food.price.toLocaleString()}</div>
         </div>
         
         <p className="text-food-muted text-sm mb-4 line-clamp-2">

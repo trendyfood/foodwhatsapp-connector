@@ -38,10 +38,10 @@ const Cart: React.FC = () => {
     let message = "Hello! I'd like to place an order:\n\n";
     
     cartItems.forEach(item => {
-      message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+      message += `• ${item.quantity}x ${item.name} - ₦${(item.price * item.quantity).toLocaleString()}\n`;
     });
     
-    message += `\nTotal: $${totalPrice.toFixed(2)}`;
+    message += `\nTotal: ₦${totalPrice.toLocaleString()}`;
     message += `\n\nPlease confirm my order. Thank you!`;
     
     // Encode the message for a URL
@@ -112,7 +112,7 @@ const Cart: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <h4 className="font-medium text-food-dark truncate">{item.name}</h4>
                       <div className="text-food-primary font-semibold mt-1">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ₦{(item.price * item.quantity).toLocaleString()}
                       </div>
                     </div>
                     
@@ -149,17 +149,17 @@ const Cart: React.FC = () => {
               <div className="mb-4">
                 <div className="flex justify-between mb-2">
                   <span className="text-food-muted">Subtotal:</span>
-                  <span className="font-medium">${totalPrice.toFixed(2)}</span>
+                  <span className="font-medium">₦{totalPrice.toLocaleString()}</span>
                 </div>
                 
                 <div className="flex justify-between mb-2">
                   <span className="text-food-muted">Delivery Fee:</span>
-                  <span className="font-medium">$0.00</span>
+                  <span className="font-medium">₦0</span>
                 </div>
                 
                 <div className="flex justify-between pt-2 border-t mt-2">
                   <span className="font-semibold">Total:</span>
-                  <span className="font-bold text-food-primary">${totalPrice.toFixed(2)}</span>
+                  <span className="font-bold text-food-primary">₦{totalPrice.toLocaleString()}</span>
                 </div>
               </div>
               

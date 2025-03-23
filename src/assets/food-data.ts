@@ -55,7 +55,7 @@ export const foodItems: FoodItem[] = [
     name: 'Jollof Rice',
     description: 'Delicious Nigerian Jollof rice with assorted meat, served with plantain.',
     price: 2500,
-    image: 'https://images.unsplash.com/photo-1634649083038-c9f93e578d17?q=80&w=1200&auto=format&fit=crop',
+    image: 'https:www.istockphoto.com/photo/barbecue-chicken-jollof-rice-gm1265268905-370814809?q=80&w=1200&auto=format&fit=crop',
     category: 'rice',
     tags: ['rice', 'spicy', 'nigerian'],
     popular: true,

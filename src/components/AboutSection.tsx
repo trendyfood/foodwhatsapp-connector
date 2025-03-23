@@ -1,9 +1,6 @@
-
 import React from 'react';
-
 const AboutSection: React.FC = () => {
-  return (
-    <section id="about" className="py-16 px-4 max-w-7xl mx-auto">
+  return <section id="about" className="py-16 px-4 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div>
           <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full mb-4">
@@ -36,11 +33,7 @@ const AboutSection: React.FC = () => {
         
         <div className="relative">
           <div className="rounded-3xl overflow-hidden shadow-soft-lg">
-            <img 
-              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop" 
-              alt="Restaurant interior" 
-              className="w-full h-full object-cover aspect-[4/3]"
-            />
+            <img alt="Restaurant interior" className="w-full h-full object-cover aspect-[4/3]" src="/lovable-uploads/0a44627c-3803-4029-9652-1baca80baf6f.jpg" />
           </div>
           
           <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-elegant max-w-xs">
@@ -60,8 +53,6 @@ const AboutSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;

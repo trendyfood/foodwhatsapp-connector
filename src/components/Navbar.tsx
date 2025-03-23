@@ -51,8 +51,8 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="text-2xl font-bold flex items-center text-food-dark">
-          <span className="text-food-primary">Food</span>
-          <span className="text-food-secondary">Order</span>
+          <span className="text-food-primary">Trendy</span>
+          <span className="text-food-secondary">Food</span>
         </a>
 
         {/* Desktop Navigation */}

@@ -76,7 +76,7 @@ const FoodCategories: React.FC<FoodCategoriesProps> = ({
           className={cn(
             "snap-start flex-shrink-0 flex flex-col items-center justify-center h-20 px-6 rounded-xl cursor-pointer transition-all duration-300",
             selectedCategory === 'all' 
-              ? 'bg-food-primary text-white shadow-soft transform scale-105' 
+              ? 'bg-gradient-to-r from-food-primary to-food-secondary text-white shadow-soft transform scale-105' 
               : 'bg-food-light text-food-dark hover:bg-food-light/80'
           )}
           onClick={() => onSelectCategory('all')}
@@ -91,7 +91,7 @@ const FoodCategories: React.FC<FoodCategoriesProps> = ({
             className={cn(
               "snap-start flex-shrink-0 flex flex-col items-center justify-center h-20 px-6 rounded-xl cursor-pointer transition-all duration-300",
               selectedCategory === category.id 
-                ? 'bg-food-primary text-white shadow-soft transform scale-105' 
+                ? 'bg-gradient-to-r from-food-primary to-food-secondary text-white shadow-soft transform scale-105' 
                 : 'bg-food-light text-food-dark hover:bg-food-light/80'
             )}
             onClick={() => onSelectCategory(category.id)}

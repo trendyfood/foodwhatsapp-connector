@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -64,9 +63,9 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				food: {
-					'primary': '#FF4B2B',
-					'secondary': '#FF416C',
-					'light': '#FFF5F5',
+					'primary': '#FF2E2E',
+					'secondary': '#FF5757',
+					'light': '#FFF0F0',
 					'dark': '#1D1D1D',
 					'gray': '#F8F8F8',
 					'text': '#333333',
@@ -77,6 +76,9 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-red': 'linear-gradient(90deg, #FF2E2E 0%, #FF5757 100%)',
 			},
 			keyframes: {
 				'accordion-down': {

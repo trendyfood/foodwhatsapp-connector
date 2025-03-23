@@ -1,15 +1,18 @@
+
 import React from 'react';
+
 const AboutSection: React.FC = () => {
-  return <section id="about" className="py-16 px-4 max-w-7xl mx-auto">
+  return (
+    <section id="about" className="py-16 px-4 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div>
           <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full mb-4">
             <span className="text-sm font-medium">About Us</span>
           </div>
-          <h2 className="text-3xl font-bold text-food-dark mb-4">We Deliver Delicious Food Experiences</h2>
+          <h2 className="text-3xl font-bold text-food-dark mb-4">We Deliver Authentic Nigerian Cuisine</h2>
           <p className="text-food-muted mb-6">
-            Our mission is to connect food lovers with the best local restaurants, providing a seamless ordering experience through WhatsApp. 
-            We believe great food should be accessible to everyone, with no complicated apps or lengthy sign-up processes.
+            TrendyFood connects Nigerian food lovers with the best local restaurants, providing a seamless ordering experience through WhatsApp. 
+            We believe great Nigerian food should be accessible to everyone, with no complicated apps or lengthy sign-up processes.
           </p>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-food-light p-4 rounded-xl">
@@ -33,7 +36,11 @@ const AboutSection: React.FC = () => {
         
         <div className="relative">
           <div className="rounded-3xl overflow-hidden shadow-soft-lg">
-            <img alt="Restaurant interior" className="w-full h-full object-cover aspect-[4/3]" src="/lovable-uploads/0a44627c-3803-4029-9652-1baca80baf6f.jpg" />
+            <img 
+              alt="Nigerian food preparation" 
+              className="w-full h-full object-cover aspect-[4/3]" 
+              src="https://images.unsplash.com/photo-1549093124-b214be98f4a9?q=80&w=1400&auto=format&fit=crop" 
+            />
           </div>
           
           <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-elegant max-w-xs">
@@ -46,13 +53,15 @@ const AboutSection: React.FC = () => {
               <div>
                 <h4 className="font-semibold text-food-dark">Quality Guaranteed</h4>
                 <p className="text-sm text-food-muted mt-1">
-                  We carefully select our restaurant partners to ensure top quality.
+                  We carefully select our Nigerian restaurant partners to ensure authentic taste and quality.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default AboutSection;

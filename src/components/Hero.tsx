@@ -10,10 +10,15 @@ const Hero: React.FC = () => {
     const heroElement = heroRef.current;
     if (!heroElement) return;
 
+    // Make sure the hero is visible immediately
+    heroElement.classList.add('animate-fade-in');
+    heroElement.style.opacity = '1';
+
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
+          entry.target.style.opacity = '1';
         }
       });
     };
@@ -30,28 +35,28 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <div ref={heroRef} className="min-h-screen flex items-center pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto opacity-0">
+    <div ref={heroRef} className="min-h-screen flex items-center pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
         <div className="order-2 md:order-1 mt-8 md:mt-0">
           <div className="space-y-6">
             <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full animate-fade-up" style={{ animationDelay: '0.2s' }}>
-              <span className="text-sm font-medium">Order food directly to your door</span>
+              <span className="text-sm font-medium">Authentic Nigerian Cuisine</span>
               <ChevronRight className="h-4 w-4" />
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-food-dark leading-tight animate-fade-up" style={{ animationDelay: '0.4s' }}>
-              Delicious Food <br />
-              <span className="text-food-primary">Delivered Fast</span>
+              Nigerian Food <br />
+              <span className="text-food-primary">At Your Doorstep</span>
             </h1>
             
             <p className="text-food-muted text-lg max-w-md animate-fade-up" style={{ animationDelay: '0.6s' }}>
-              Experience the convenience of ordering your favorite meals from local restaurants and have them delivered right to your door.
+              Experience authentic Nigerian cuisine delivered straight to your home. From delicious Jollof rice to hearty soups and swallows.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-fade-up" style={{ animationDelay: '0.8s' }}>
               <Button 
                 size="lg" 
-                className="bg-food-primary hover:bg-food-secondary text-white transition-all duration-300 rounded-xl shadow-button btn-shine text-base"
+                className="bg-gradient-to-r from-food-primary to-food-secondary hover:bg-food-secondary text-white transition-all duration-300 rounded-xl shadow-button btn-shine text-base"
               >
                 <span>Order Now</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -72,7 +77,7 @@ const Hero: React.FC = () => {
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
                     <img 
                       src={`https://randomuser.me/api/portraits/men/${20 + i}.jpg`} 
-                      alt={`User ${i}`} 
+                      alt={`Customer ${i}`} 
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -89,8 +94,8 @@ const Hero: React.FC = () => {
         <div className="order-1 md:order-2 relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] relative rounded-3xl overflow-hidden shadow-soft-lg">
             <img 
-              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1400&auto=format&fit=crop" 
-              alt="Delicious Food" 
+              src="https://images.unsplash.com/photo-1634649083038-c9f93e578d17?q=80&w=1400&auto=format&fit=crop" 
+              alt="Nigerian Jollof Rice" 
               className="w-full h-full object-cover"
             />
             
@@ -98,7 +103,7 @@ const Hero: React.FC = () => {
             <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-soft animate-bounce-subtle">
               <div className="text-center">
                 <div className="text-sm font-medium text-food-muted">Delivery time</div>
-                <div className="text-xl font-bold text-food-primary">15-20 min</div>
+                <div className="text-xl font-bold text-food-primary">15-30 min</div>
               </div>
             </div>
             

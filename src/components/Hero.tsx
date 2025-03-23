@@ -12,13 +12,15 @@ const Hero: React.FC = () => {
 
     // Make sure the hero is visible immediately
     heroElement.classList.add('animate-fade-in');
-    heroElement.style.opacity = '1';
+    
+    // Fix: Use style property with HTMLElement type assertion
+    (heroElement as HTMLElement).style.opacity = '1';
 
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
-          entry.target.style.opacity = '1';
+          (entry.target as HTMLElement).style.opacity = '1';
         }
       });
     };

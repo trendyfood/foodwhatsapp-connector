@@ -41,7 +41,7 @@ const AboutSection: React.FC = () => {
             className="w-full h-full object-cover aspect-[4/3]" 
             src="/lovable-uploads/0a44627c-3803-4029-9652-1baca80baf6f.jpg" 
           />
-         </div>
+        
        </div>
           
           <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-elegant max-w-xs">

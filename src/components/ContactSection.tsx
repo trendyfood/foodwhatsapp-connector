@@ -22,7 +22,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Phone</h3>
-            <p className="text-food-primary">+1 (234) 567-8900</p>
+            <p className="text-food-primary">+23480-3896-9978</p>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-soft">
@@ -32,7 +32,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Email</h3>
-            <p className="text-food-primary">info@foodorder.com</p>
+            <p className="text-food-primary">trendyfoodorg@outlook.com</p>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-soft">
@@ -43,7 +43,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Address</h3>
-            <p className="text-food-primary">123 Food Street, Cuisine City</p>
+            <p className="text-food-primary">2 Moshalshi Street,Lagos Ng</p>
           </div>
         </div>
       </div>

@@ -72,24 +72,6 @@ const Hero: React.FC = () => {
                 View Menu
               </Button>
             </div>
-            
-            <div className="pt-6 flex items-center space-x-6 animate-fade-up" style={{ animationDelay: '1s' }}>
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                    <img 
-                      src={`https://randomuser.me/api/portraits/men/${20 + i}.jpg`} 
-                      alt={`Customer ${i}`} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold text-food-dark">500+ Happy Customers</div>
-                <div className="text-food-muted">Trusted by customers</div>
-              </div>
-            </div>
           </div>
         </div>
         

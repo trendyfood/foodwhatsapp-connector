@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
         <div className="order-1 md:order-2 relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] relative rounded-3xl overflow-hidden shadow-soft-lg">
             <img 
-              src="https://images.unsplash.com/photo-1634649083038-c9f93e578d17?q=80&w=1400&auto=format&fit=crop" 
+               src="/lovable-uploads/0a44627c-3803-4029-9652-1baca80baf6f.jpg"  
               alt="Nigerian Jollof Rice" 
               className="w-full h-full object-cover"
             />

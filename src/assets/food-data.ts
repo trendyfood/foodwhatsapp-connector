@@ -30,7 +30,7 @@ export const categories: Category[] = [
   {
     id: 'swallow',
     name: 'Swallow',
-    icon: '🫓',
+    icon: ' 🥗',
   },
   {
     id: 'meat',
@@ -55,7 +55,7 @@ export const foodItems: FoodItem[] = [
     name: 'Jollof Rice',
     description: 'Delicious Nigerian Jollof rice with assorted meat, served with plantain.',
     price: 2500,
-    image: 'https:www.istockphoto.com/photo/barbecue-chicken-jollof-rice-gm1265268905-370814809?q=80&w=1200&auto=format&fit=crop',
+    image: 'istockphoto-2171624928-612x612.webp'
     category: 'rice',
     tags: ['rice', 'spicy', 'nigerian'],
     popular: true,

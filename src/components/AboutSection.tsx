@@ -39,7 +39,7 @@ const AboutSection: React.FC = () => {
            <img 
             alt="Nigerian food preparation" 
             className="w-full h-full object-cover aspect-[4/3]" 
-            src="/lovable-uploads/istockphoto-1265268905-612x612.webp.jpg" 
+            src="/lovable-uploads/istockphoto-1265268905-612x612.webp" 
           />
         
        </div>

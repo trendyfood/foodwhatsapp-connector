@@ -70,16 +70,7 @@ export const foodItems: FoodItem[] = [
     tags: ['rice', 'Fried', 'nigerian'],
     popular: false,
   },
-   {
-    id: '15',
-    name: 'Ofada Rice',
-    description: 'Fragrant rice cooked with coconut milk, served with grilled chicken.',
-    price: 4500,
-    image: '/istockphoto-1265268905-612x612.webp',
-    category: 'rice',
-    tags: ['rice', 'Ofada', 'nigerian'],
-    popular: false,
-  },
+
   {
     id: '3',
     name: 'Egusi Soup',
@@ -173,6 +164,16 @@ export const foodItems: FoodItem[] = [
   {
     id: '12',
     name: 'Chicken Stew',
+    description: 'Delicious Nigerian chicken stew made with tomatoes, peppers and traditional spices.',
+    price: 2800,
+    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1200&auto=format&fit=crop',
+    category: 'chicken',
+    tags: ['chicken', 'stew', 'nigerian'],
+    popular: false,
+  }
+   {
+    id: '13',
+    name: 'Ofada',
     description: 'Delicious Nigerian chicken stew made with tomatoes, peppers and traditional spices.',
     price: 2800,
     image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1200&auto=format&fit=crop',

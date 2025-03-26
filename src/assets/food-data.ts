@@ -75,7 +75,7 @@ export const foodItems: FoodItem[] = [
     name: 'Ofada Rice',
     description: 'Fragrant rice cooked with coconut milk, served with grilled chicken.',
     price: 4500,
-    image: '/lovable-uploads/Ofadaric.jpg',
+    image: '/istockphoto-1265268905-612x612.webp',
     category: 'rice',
     tags: ['rice', 'Ofada', 'nigerian'],
     popular: false,

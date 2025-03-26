@@ -62,12 +62,12 @@ export const foodItems: FoodItem[] = [
   },
   {
     id: '2',
-    name: 'Coconut Rice',
+    name: 'Fried Rice',
     description: 'Fragrant rice cooked with coconut milk, served with grilled chicken.',
     price: 2300,
-    image: 'https://www.istockphoto.com/photo/seafood-fried-rice-gm1896579267-554121740?searchscope=image%2Cfilm',
+    image: '/lovable-uploads/Fried-Rice1.jpg',
     category: 'rice',
-    tags: ['rice', 'coconut', 'nigerian'],
+    tags: ['rice', 'Fried', 'nigerian'],
     popular: false,
   },
   {

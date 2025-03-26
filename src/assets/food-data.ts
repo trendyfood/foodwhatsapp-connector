@@ -122,6 +122,17 @@ export const foodItems: FoodItem[] = [
     popular: false,
   },
   {
+    id: '14',
+    name: 'Semo',
+    description: 'Soft swallow made from yam flour, dark in color and delicious with any soup.',
+    price: 800,
+    image: '/lovable-uploads/semo.webp',
+    category: 'swallow',
+    tags: ['swallow', 'amala', 'nigerian'],
+    popular: false,
+  },
+  
+  {
     id: '7',
     name: 'Pepper Soup Meat',
     description: 'Spicy Nigerian pepper soup with tender chunks of goat meat and traditional spices.',

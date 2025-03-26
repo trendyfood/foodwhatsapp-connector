@@ -106,7 +106,7 @@ export const foodItems: FoodItem[] = [
     name: 'Pounded Yam',
     description: 'Smooth, stretchy swallow made from pounded yam, perfect with any Nigerian soup.',
     price: 1000,
-    image: 'https://images.unsplash.com/photo-1605280863572-270376ca90b7?q=80&w=1200&auto=format&fit=crop',
+    image: '/lovable-uploads/pundedyam.webp',
     category: 'swallow',
     tags: ['swallow', 'yam', 'nigerian'],
     popular: true,

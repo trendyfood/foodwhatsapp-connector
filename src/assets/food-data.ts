@@ -70,6 +70,16 @@ export const foodItems: FoodItem[] = [
     tags: ['rice', 'Fried', 'nigerian'],
     popular: false,
   },
+  {
+    id: '13',
+    name: 'Ofada Rice',
+    description: 'Traditional Nigerian brown rice served with spicy Ofada sauce, assorted meat and vegetables.',
+    price: 2800,
+    image: '/lovable-uploads/ofadaric.jpg',
+    category: 'rice',
+    tags: ['rice', 'traditional', 'nigerian'],
+    popular: false,
+  },
 
   {
     id: '3',

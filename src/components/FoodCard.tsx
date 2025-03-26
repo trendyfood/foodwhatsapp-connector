@@ -13,9 +13,13 @@ const FoodCard: React.FC<FoodCardProps> = ({ food }) => {
   const { addToCart, cartItems } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   const itemInCart = cartItems.find(item => item.id === food.id);
   const quantity = itemInCart?.quantity || 0;
+
+  // Debug image loading
+  console.log(`Food item: ${food.name}, Image path: ${food.image}, ID: ${food.id}`);
 
   return (
     <div 
@@ -25,22 +29,34 @@ const FoodCard: React.FC<FoodCardProps> = ({ food }) => {
     >
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden rounded-t-xl bg-gray-100">
-        {!isImageLoaded && (
+        {!isImageLoaded && !imageError && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-100 animate-pulse">
             <div className="w-10 h-10 border-4 border-food-primary/30 border-t-food-primary rounded-full animate-spin"></div>
           </div>
         )}
         
-        <img 
-          src={food.image} 
-          alt={food.name}
-          className={cn(
-            "food-card-img",
-            !isImageLoaded && "opacity-0",
-            isImageLoaded && "opacity-100"
-          )}
-          onLoad={() => setIsImageLoaded(true)}
-        />
+        {imageError ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100">
+            <span className="text-4xl">🍽️</span>
+            <p className="text-xs text-food-muted mt-2">Image not available</p>
+          </div>
+        ) : (
+          <img 
+            src={food.image} 
+            alt={food.name}
+            className={cn(
+              "food-card-img object-cover w-full h-full",
+              !isImageLoaded && "opacity-0",
+              isImageLoaded && "opacity-100"
+            )}
+            onLoad={() => setIsImageLoaded(true)}
+            onError={() => {
+              console.error(`Failed to load image for ${food.name}: ${food.image}`);
+              setImageError(true);
+              setIsImageLoaded(true);
+            }}
+          />
+        )}
         
         {food.popular && (
           <div className="absolute top-2 left-2 px-2 py-1 bg-food-primary text-white text-xs font-medium rounded-full">

@@ -27,7 +27,12 @@ const Index = () => {
     } else {
       setFilteredItems(foodItems.filter(item => item.category === selectedCategory));
     }
-  }, [selectedCategory]);
+    
+    // Debug log to check filtering
+    console.log('Filtered items count:', filteredItems.length);
+    console.log('Selected category:', selectedCategory);
+    console.log('All food items:', foodItems);
+  }, [selectedCategory, foodItems]);
 
   // Scroll to top button visibility
   useEffect(() => {

@@ -15,6 +15,10 @@ const MenuSection: React.FC<MenuSectionProps> = ({
   onSelectCategory, 
   filteredItems 
 }) => {
+  // Debug food items display
+  console.log(`MenuSection rendering with ${filteredItems.length} items`);
+  console.log('Filtered items:', filteredItems.map(item => item.name));
+
   return (
     <section id="menu" className="py-12 px-4 max-w-7xl mx-auto">
       <div className="text-center mb-8">

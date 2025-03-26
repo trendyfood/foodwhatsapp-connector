@@ -171,14 +171,4 @@ export const foodItems: FoodItem[] = [
     tags: ['chicken', 'stew', 'nigerian'],
     popular: false,
   },
-   {
-    id: '13',
-    name: 'Ofada',
-    description: 'Delicious Nigerian chicken stew made with tomatoes, peppers and traditional spices.',
-    price: 2800,
-    image: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?q=80&w=1200&auto=format&fit=crop',
-    category: 'chicken',
-    tags: ['chicken', 'stew', 'nigerian'],
-    popular: false,
-  },
 ];

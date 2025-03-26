@@ -170,7 +170,7 @@ export const foodItems: FoodItem[] = [
     category: 'chicken',
     tags: ['chicken', 'stew', 'nigerian'],
     popular: false,
-  }
+  },
    {
     id: '13',
     name: 'Ofada',
@@ -180,5 +180,5 @@ export const foodItems: FoodItem[] = [
     category: 'chicken',
     tags: ['chicken', 'stew', 'nigerian'],
     popular: false,
-  }
+  },
 ];

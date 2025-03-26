@@ -105,7 +105,7 @@ export const foodItems: FoodItem[] = [
     name: 'Amala',
     description: 'Soft swallow made from yam flour, dark in color and delicious with any soup.',
     price: 800,
-    image: 'https://images.unsplash.com/photo-1596097635121-a2ddb3d2d04b?q=80&w=1200&auto=format&fit=crop',
+    image: '/lovable-uploads/amala.jpg',
     category: 'swallow',
     tags: ['swallow', 'amala', 'nigerian'],
     popular: false,

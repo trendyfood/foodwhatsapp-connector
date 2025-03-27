@@ -61,6 +61,16 @@ export const foodItems: FoodItem[] = [
     popular: true,
   },
   {
+    id: '15',
+    name: 'White Rice',
+    description: 'Delicious Nigerian white rice with assorted meat, served with plantain.',
+    price: 2500,
+    image: '/lovable-uploads/0a44627c-3803-4029-9652-1baca80baf6f.jpg',
+    category: 'rice',
+    tags: ['rice', 'spicy', 'nigerian'],
+    popular: true,
+  },
+  {
     id: '2',
     name: 'Fried Rice',
     description: 'Fragrant rice cooked with coconut milk, served with grilled chicken.',

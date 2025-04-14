@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '../context/CartContext';
@@ -24,8 +23,7 @@ const WhatsappCheckout: React.FC = () => {
     const encodedMessage = encodeURIComponent(message);
     
     // Open WhatsApp with the pre-filled message
-    // Note: In a real application, you would replace '1234567890' with the actual business phone number
-    window.open(`https://wa.me/1234567890?text=${encodedMessage}`, '_blank');
+    window.open(`https://wa.me/2348100055499?text=${encodedMessage}`, '_blank');
   };
 
   return (

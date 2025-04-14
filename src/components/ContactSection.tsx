@@ -22,13 +22,13 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Phone</h3>
-            <p className="text-food-primary">+23480-3896-9978</p>
+            <p className="text-food-primary">+2348100055499</p>
           </div>
           
           <div className="bg-white p-6 rounded-xl shadow-soft">
             <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-food-light flex items-center justify-center text-food-primary">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h2v4l.586-.586z" />
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Email</h3>
@@ -43,7 +43,7 @@ const ContactSection: React.FC = () => {
               </svg>
             </div>
             <h3 className="font-semibold text-food-dark mb-2">Address</h3>
-            <p className="text-food-primary">2 Moshalshi Street,Lagos Ng</p>
+            <p className="text-food-primary">53, Ait road, Cocacola Bustop/opposite Gb, Kola Lagos Ng</p>
           </div>
         </div>
       </div>

@@ -50,7 +50,7 @@ export const foodItems: FoodItem[] = [
     name: 'Jollof Rice',
     description: 'Delicious Nigerian Jollof rice with assorted meat, served with plantain.',
     price: 800,
-    image: '/lovable-uploads/istockphoto-2171624928-612x612.webp',
+    image: '/lovable-uploads/8c9c1f0c-346a-417b-bedf-6297d6c798a5.png',
     category: 'rice',
     tags: ['rice', 'spicy', 'nigerian'],
     popular: true,
@@ -70,7 +70,7 @@ export const foodItems: FoodItem[] = [
     name: 'Fried Rice',
     description: 'Fragrant rice cooked with coconut milk, served with grilled chicken.',
     price: 800,
-    image: '/lovable-uploads/Fried-Rice1.jpg',
+    image: '/lovable-uploads/4213cb11-e3f4-483b-9abf-61905e7e1676.png',
     category: 'rice',
     tags: ['rice', 'Fried', 'nigerian'],
     popular: false,
@@ -80,7 +80,7 @@ export const foodItems: FoodItem[] = [
     name: 'Ofada Rice',
     description: 'Traditional Nigerian brown rice served with spicy Ofada sauce, assorted meat and vegetables.',
     price: 800,
-    image: '/lovable-uploads/ofadaric.jpg',
+    image: '/lovable-uploads/21b9a6d1-6657-4b30-bfdb-9b8ad81a3bf8.png',
     category: 'rice',
     tags: ['rice', 'traditional', 'nigerian'],
     popular: false,
@@ -126,7 +126,7 @@ export const foodItems: FoodItem[] = [
     popular: false,
   },
   {
-    id: '6',
+    id: '7',
     name: 'Amala',
     description: 'Soft swallow made from yam flour, dark in color and delicious with any soup.',
     price: 800,
@@ -226,4 +226,3 @@ export const foodItems: FoodItem[] = [
     popular: false,
   },
 ];
-

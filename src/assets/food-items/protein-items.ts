@@ -47,7 +47,7 @@ export const proteinItems: FoodItem[] = [
     name: 'Eja Kika',
     description: 'Spicy Nigerian fish recipe with rich peppered sauce and spices.',
     price: 2000,
-    image: '/lovable-uploads/93a02629-895f-4250-806a-bf6a58a53320.png',
+    image: '/lovable-uploads/ee771644-4c57-42e0-9595-49608802c647.png',
     category: 'protein',
     tags: ['fish', 'spicy', 'nigerian'],
     popular: false,

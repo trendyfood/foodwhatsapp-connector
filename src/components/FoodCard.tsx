@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { FoodItem } from '../assets/food-data';
+import { FoodItem } from '../assets/types';
 import { Plus, Minus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { cn } from '@/lib/utils';

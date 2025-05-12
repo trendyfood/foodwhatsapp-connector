@@ -2,7 +2,7 @@
 import React from 'react';
 import FoodCategories from './FoodCategories';
 import FoodCard from './FoodCard';
-import { FoodItem } from '@/assets/food-data';
+import { FoodItem } from '@/assets/types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface MenuSectionProps {

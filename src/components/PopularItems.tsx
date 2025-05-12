@@ -1,7 +1,6 @@
-
 import React from 'react';
 import FoodCard from './FoodCard';
-import { FoodItem } from '@/assets/food-data';
+import { FoodItem } from '@/assets/types';
 
 interface PopularItemsProps {
   popularItems: FoodItem[];

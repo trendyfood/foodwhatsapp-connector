@@ -8,6 +8,11 @@ export const categories: Category[] = [
     icon: '🍚',
   },
   {
+    id: 'combos',
+    name: 'Combos',
+    icon: '🍱',
+  },
+  {
     id: 'soup',
     name: 'Soup',
     icon: '🍲',

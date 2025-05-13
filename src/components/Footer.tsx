@@ -61,6 +61,7 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
               <li><button onClick={() => navigateToCategory('rice')} className="text-gray-400 hover:text-white transition-colors">Rice</button></li>
+              <li><button onClick={() => navigateToCategory('combos')} className="text-gray-400 hover:text-white transition-colors">Combos</button></li>
               <li><button onClick={() => navigateToCategory('soup')} className="text-gray-400 hover:text-white transition-colors">Soup</button></li>
               <li><button onClick={() => navigateToCategory('swallow')} className="text-gray-400 hover:text-white transition-colors">Swallow</button></li>
               <li><button onClick={() => navigateToCategory('protein')} className="text-gray-400 hover:text-white transition-colors">Protein</button></li>

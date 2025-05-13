@@ -58,9 +58,15 @@ const FoodCard: React.FC<FoodCardProps> = ({ food }) => {
           />
         )}
         
-        {food.popular && (
+        {typeof food.popular === 'boolean' && food.popular && (
           <div className="absolute top-2 left-2 px-2 py-1 bg-food-primary text-white text-xs font-medium rounded-full">
             Popular
+          </div>
+        )}
+        
+        {typeof food.popular === 'string' && (
+          <div className="absolute top-2 left-2 px-2 py-1 bg-red-500 text-white text-xs font-medium rounded-full">
+            {food.popular}
           </div>
         )}
       </div>

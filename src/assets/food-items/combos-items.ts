@@ -32,4 +32,14 @@ export const combosItems: FoodItem[] = [
     tags: ['rice', 'jollof', 'combo', 'nigerian'],
     popular: true,
   },
+  {
+    id: '33',
+    name: 'Spaghetti & Chicken',
+    description: '3 portions of spaghetti and one piece of chicken (or small turkey) with any Coca-Cola drink of your choice.',
+    price: 3450,
+    image: '/lovable-uploads/6bcee95d-bcf9-4c29-8791-e5ebc7464e4a.png',
+    category: 'combos',
+    tags: ['spaghetti', 'chicken', 'combo', 'nigerian'],
+    popular: '-25% Off',
+  },
 ];

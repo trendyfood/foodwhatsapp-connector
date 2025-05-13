@@ -9,8 +9,8 @@ import { FoodItem } from '../types';
 
 // Combine all food items into a single array
 export const foodItems: FoodItem[] = [
-  ...riceItems,
   ...combosItems,
+  ...riceItems,
   ...soupItems,
   ...swallowItems,
   ...proteinItems,

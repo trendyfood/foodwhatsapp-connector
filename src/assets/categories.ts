@@ -3,14 +3,14 @@ import { Category } from './types';
 
 export const categories: Category[] = [
   {
-    id: 'rice',
-    name: 'Rice',
-    icon: '🍚',
-  },
-  {
     id: 'combos',
     name: 'Combos',
     icon: '🍱',
+  },
+  {
+    id: 'rice',
+    name: 'Rice',
+    icon: '🍚',
   },
   {
     id: 'soup',

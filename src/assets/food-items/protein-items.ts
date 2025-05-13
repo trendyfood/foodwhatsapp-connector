@@ -52,14 +52,4 @@ export const proteinItems: FoodItem[] = [
     tags: ['fish', 'spicy', 'nigerian'],
     popular: false,
   },
-  {
-    id: '23',
-    name: 'Fried Fish',
-    description: 'Crispy fried fish seasoned with Nigerian spices and herbs.',
-    price: 2000,
-    image: '/lovable-uploads/b743a332-2d5a-4789-a6f1-c61db044d84a.png',
-    category: 'protein',
-    tags: ['fish', 'fried', 'nigerian'],
-    popular: false,
-  },
 ];

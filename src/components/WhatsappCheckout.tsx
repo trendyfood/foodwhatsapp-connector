@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useCart } from '../context/CartContext';
@@ -13,10 +14,10 @@ const WhatsappCheckout: React.FC = () => {
     let message = "Hello! I'd like to place an order:\n\n";
     
     cartItems.forEach(item => {
-      message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+      message += `• ${item.quantity}x ${item.name} - ₦${(item.price * item.quantity).toLocaleString()}\n`;
     });
     
-    message += `\nTotal: $${totalPrice.toFixed(2)}`;
+    message += `\nTotal: ₦${totalPrice.toLocaleString()}`;
     message += `\n\nPlease confirm my order. Thank you!`;
     
     // Encode the message for a URL
@@ -72,7 +73,7 @@ const WhatsappCheckout: React.FC = () => {
           <div className="inline-flex items-center justify-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full mb-4">
             <span className="text-sm font-medium">
               {totalItems > 0 
-                ? `Your cart: ${totalItems} item${totalItems !== 1 ? 's' : ''} ($${totalPrice.toFixed(2)})`
+                ? `Your cart: ${totalItems} item${totalItems !== 1 ? 's' : ''} (₦${totalPrice.toLocaleString()})`
                 : 'Your cart is empty'
               }
             </span>

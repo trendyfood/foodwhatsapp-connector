@@ -34,6 +34,25 @@ const Index = () => {
     console.log('All food items:', foodItems);
   }, [selectedCategory, foodItems]);
 
+  // Listen for category selection events from footer
+  useEffect(() => {
+    const handleCategorySelection = (event: CustomEvent) => {
+      setSelectedCategory(event.detail);
+      
+      // Scroll to the menu section
+      const menuSection = document.getElementById('menu');
+      if (menuSection) {
+        menuSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    document.addEventListener('selectCategory', handleCategorySelection as EventListener);
+    
+    return () => {
+      document.removeEventListener('selectCategory', handleCategorySelection as EventListener);
+    };
+  }, []);
+
   // Scroll to top button visibility
   useEffect(() => {
     const handleScroll = () => {

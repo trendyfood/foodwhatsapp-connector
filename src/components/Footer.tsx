@@ -2,6 +2,20 @@
 import React from 'react';
 
 const Footer: React.FC = () => {
+  // Function to scroll to the menu section and select a category
+  const navigateToCategory = (categoryId: string) => {
+    // Find the menu section element
+    const menuSection = document.getElementById('menu');
+    if (menuSection) {
+      // Scroll to the menu section
+      menuSection.scrollIntoView({ behavior: 'smooth' });
+      
+      // Dispatch a custom event to notify the menu section to switch categories
+      const event = new CustomEvent('selectCategory', { detail: categoryId });
+      document.dispatchEvent(event);
+    }
+  };
+
   return (
     <footer className="bg-food-dark text-white py-12 px-4">
       <div className="max-w-7xl mx-auto">
@@ -46,11 +60,11 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Burgers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pizza</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sushi</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Pasta</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Desserts</a></li>
+              <li><button onClick={() => navigateToCategory('rice')} className="text-gray-400 hover:text-white transition-colors">Rice</button></li>
+              <li><button onClick={() => navigateToCategory('soup')} className="text-gray-400 hover:text-white transition-colors">Soup</button></li>
+              <li><button onClick={() => navigateToCategory('swallow')} className="text-gray-400 hover:text-white transition-colors">Swallow</button></li>
+              <li><button onClick={() => navigateToCategory('protein')} className="text-gray-400 hover:text-white transition-colors">Protein</button></li>
+              <li><button onClick={() => navigateToCategory('chicken')} className="text-gray-400 hover:text-white transition-colors">Chicken</button></li>
             </ul>
           </div>
           

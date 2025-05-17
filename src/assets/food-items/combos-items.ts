@@ -40,6 +40,6 @@ export const combosItems: FoodItem[] = [
     image: '/lovable-uploads/6bcee95d-bcf9-4c29-8791-e5ebc7464e4a.png',
     category: 'combos',
     tags: ['spaghetti', 'chicken', 'combo', 'nigerian'],
-    popular: '-25% Off',
+    popular: "-25% Off",
   },
 ];

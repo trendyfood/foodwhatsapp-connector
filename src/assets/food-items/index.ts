@@ -3,7 +3,7 @@ import { riceItems } from './rice-items';
 import { soupItems } from './soup-items';
 import { swallowItems } from './swallow-items';
 import { proteinItems } from './protein-items';
-import { chickenItems } from './chicken-items';
+import { drinksItems } from './drinks-items';
 import { combosItems } from './combos-items';
 import { FoodItem } from '../types';
 
@@ -14,5 +14,5 @@ export const foodItems: FoodItem[] = [
   ...soupItems,
   ...swallowItems,
   ...proteinItems,
-  ...chickenItems,
+  ...drinksItems,
 ];

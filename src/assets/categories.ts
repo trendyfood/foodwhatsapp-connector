@@ -28,8 +28,8 @@ export const categories: Category[] = [
     icon: '🥩',
   },
   {
-    id: 'chicken',
-    name: 'Chicken',
-    icon: '🍗',
+    id: 'drinks',
+    name: 'Drinks',
+    icon: '🥤',
   }
 ];

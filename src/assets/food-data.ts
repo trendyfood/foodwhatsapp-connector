@@ -14,4 +14,4 @@ export * from './food-items/combos-items';
 export * from './food-items/soup-items';
 export * from './food-items/swallow-items';
 export * from './food-items/protein-items';
-export * from './food-items/chicken-items';
+export * from './food-items/drinks-items';

@@ -52,4 +52,14 @@ export const proteinItems: FoodItem[] = [
     tags: ['fish', 'spicy', 'nigerian'],
     popular: false,
   },
+  {
+    id: '21',
+    name: 'Chicken Wings',
+    description: 'Crispy fried chicken wings with Nigerian seasoning.',
+    price: 5000,
+    image: '/lovable-uploads/chicken_wing.jpg',
+    category: 'protein',
+    tags: ['chicken', 'fried', 'appetizer'],
+    popular: false,
+  },
 ];

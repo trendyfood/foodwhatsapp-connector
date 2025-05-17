@@ -1,21 +1,17 @@
-
 import React, { useEffect, useRef } from 'react';
 import { ChevronRight, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 const Hero: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const heroElement = heroRef.current;
     if (!heroElement) return;
 
     // Make sure the hero is visible immediately
     heroElement.classList.add('animate-fade-in');
-    
+
     // Fix: Use style property with HTMLElement type assertion
     (heroElement as HTMLElement).style.opacity = '1';
-
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -24,64 +20,58 @@ const Hero: React.FC = () => {
         }
       });
     };
-
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.1
     });
-
     observer.observe(heroElement);
-
     return () => {
       if (heroElement) observer.unobserve(heroElement);
     };
   }, []);
-
-  return (
-    <div ref={heroRef} className="min-h-screen flex items-center pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
+  return <div ref={heroRef} className="min-h-screen flex items-center pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
         <div className="order-2 md:order-1 mt-8 md:mt-0">
           <div className="space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <div className="inline-flex items-center space-x-2 bg-food-light text-food-primary px-4 py-2 rounded-full animate-fade-up" style={{
+            animationDelay: '0.2s'
+          }}>
               <span className="text-sm font-medium">Authentic Nigerian Cuisine</span>
               <ChevronRight className="h-4 w-4" />
             </div>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-food-dark leading-tight animate-fade-up" style={{ animationDelay: '0.4s' }}>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-food-dark leading-tight animate-fade-up" style={{
+            animationDelay: '0.4s'
+          }}>
               Nigerian Food <br />
               <span className="text-food-primary">At Your Doorstep</span>
             </h1>
             
-            <p className="text-food-muted text-lg max-w-md animate-fade-up" style={{ animationDelay: '0.6s' }}>
+            <p className="text-food-muted text-lg max-w-md animate-fade-up" style={{
+            animationDelay: '0.6s'
+          }}>
               Experience authentic Nigerian cuisine delivered straight to your home. From delicious Jollof rice to hearty soups and swallows.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-fade-up" style={{ animationDelay: '0.8s' }}>
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-food-primary to-food-secondary hover:bg-food-secondary text-white transition-all duration-300 rounded-xl shadow-button btn-shine text-base"
-              >
+            <div className="flex flex-col sm:flex-row gap-4 pt-2 animate-fade-up" style={{
+            animationDelay: '0.8s'
+          }}>
+              <Button size="lg" className="bg-gradient-to-r from-food-primary to-food-secondary hover:bg-food-secondary text-white transition-all duration-300 rounded-xl shadow-button btn-shine text-base">
                 <span>Order Now</span>
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-food-primary text-food-primary hover:bg-food-light hover:text-food-primary transition-all duration-300 rounded-xl text-base"
-              >
+              <Button variant="outline" size="lg" className="border-2 border-food-primary text-food-primary hover:bg-food-light hover:text-food-primary transition-all duration-300 rounded-xl text-base">
                 View Menu
               </Button>
             </div>
           </div>
         </div>
         
-        <div className="order-1 md:order-2 relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
+        <div className="order-1 md:order-2 relative animate-fade-up" style={{
+        animationDelay: '0.2s'
+      }}>
           <div className="w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] relative rounded-3xl overflow-hidden shadow-soft-lg">
-            <img 
-               src="/lovable-uploads/istockphoto-471213205-612x612.webp" 
-              alt="Nigerian Jollof Rice" 
-              className="w-full h-full object-cover"
-            />
+            <img alt="Nigerian Jollof Rice" className="w-full h-full object-cover" src="/lovable-uploads/84f6c932-25bf-48b2-93a4-f45559b870ae.png" />
             
             {/* Floating elements */}
             <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm p-4 rounded-xl shadow-soft animate-bounce-subtle">
@@ -105,8 +95,6 @@ const Hero: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;

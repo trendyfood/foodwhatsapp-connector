@@ -7,7 +7,7 @@ export interface FoodItem {
   image: string;
   category: string;
   tags: string[];
-  popular: boolean;
+  popular: boolean | string;
 }
 
 export interface Category {

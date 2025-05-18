@@ -62,4 +62,25 @@ export const proteinItems: FoodItem[] = [
     tags: ['chicken', 'fried', 'appetizer'],
     popular: false,
   },
+  {
+    id: '23',
+    name: 'Goat Meat',
+    description: '1 Piece of Goat Meat',
+    price: 2000,
+    image: '/lovable-uploads/fe36e116-841d-44d7-b6f5-35a6940ef8ad.png',
+    category: 'protein',
+    tags: ['goat', 'meat', 'nigerian'],
+    popular: false,
+  },
+  {
+    id: '24',
+    name: 'Turkey (Small)',
+    description: '1 piece of small sized fried peppered Turkey',
+    price: 3500,
+    image: '/lovable-uploads/317b30e9-4634-4936-a9d2-06f599423443.png',
+    category: 'protein',
+    tags: ['turkey', 'fried', 'nigerian'],
+    popular: false,
+  },
 ];
+

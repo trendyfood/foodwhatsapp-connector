@@ -42,4 +42,25 @@ export const combosItems: FoodItem[] = [
     tags: ['spaghetti', 'chicken', 'combo', 'nigerian'],
     popular: true,
   },
+  {
+    id: '34',
+    name: 'Abula Special',
+    description: '3 wraps of amala with ewedu, gbegiri, stew and goat meat + any Coca-Cola drink of your choice',
+    price: 3900,
+    image: '/lovable-uploads/b1f7cad6-3a37-4a20-9d5e-33292dfbf6f2.png',
+    category: 'combos',
+    tags: ['amala', 'swallow', 'combo', 'nigerian'],
+    popular: false,
+  },
+  {
+    id: '35',
+    name: 'Yam Porriage',
+    description: '2 Portions of yam porridge (Takeaway Pack included)',
+    price: 1000,
+    image: '/lovable-uploads/c9794397-e894-401c-ab6c-0f14b8450bf0.png',
+    category: 'combos',
+    tags: ['yam', 'combo', 'nigerian'],
+    popular: false,
+  },
 ];
+

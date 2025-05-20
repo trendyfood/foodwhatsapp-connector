@@ -5,9 +5,9 @@ export const proteinItems: FoodItem[] = [
   {
     id: '16',
     name: 'Moi Moi',
-    description: 'Steamed bean pudding made from blended beans, peppers, and spices.',
+    description: '1 portion of fried plantain.',
     price: 500,
-    image: '/lovable-uploads/moi-moi.jpg',
+    image: '/lovable-uploads/7685f6a5-a285-4c99-bf7f-dd6d84283b14.png',
     category: 'protein',
     tags: ['beans', 'steamed', 'nigerian'],
     popular: false,
@@ -15,9 +15,9 @@ export const proteinItems: FoodItem[] = [
   {
     id: '17',
     name: 'Pomo',
-    description: 'Nigerian cow skin delicacy, usually served with soup or as a side dish.',
+    description: '1 piece of Ponmo.',
     price: 500,
-    image: '/lovable-uploads/pomo.jpg',
+    image: '/lovable-uploads/a9b19a42-a802-452c-bfbc-e8ce37c44f99.png',
     category: 'protein',
     tags: ['meat', 'traditional', 'nigerian'],
     popular: false,
@@ -25,11 +25,21 @@ export const proteinItems: FoodItem[] = [
   {
     id: '18',
     name: 'Fried Plantain',
-    description: 'Sweet ripe plantain slices fried until golden brown.',
+    description: '1 portion of fried plantain.',
     price: 500,
-    image: '/lovable-uploads/plantain.jpg',
+    image: '/lovable-uploads/1f1bb5f3-bddb-4e0e-8f49-e04c66c39435.png',
     category: 'protein',
     tags: ['plantain', 'fried', 'side dish'],
+    popular: false,
+  },
+  {
+    id: '19',
+    name: 'Egg',
+    description: '1 piece of Egg.',
+    price: 350,
+    image: '/lovable-uploads/ba60fb10-9e18-4300-b16c-c6191a7b64a2.png',
+    category: 'protein',
+    tags: ['egg', 'breakfast', 'nigerian'],
     popular: false,
   },
   {
@@ -53,16 +63,6 @@ export const proteinItems: FoodItem[] = [
     popular: false,
   },
   {
-    id: '21',
-    name: 'Chicken Wings',
-    description: 'Crispy fried chicken wings with Nigerian seasoning.',
-    price: 5000,
-    image: '/lovable-uploads/chicken_wing.jpg',
-    category: 'protein',
-    tags: ['chicken', 'fried', 'appetizer'],
-    popular: false,
-  },
-  {
     id: '23',
     name: 'Goat Meat',
     description: '1 Piece of Goat Meat',
@@ -83,4 +83,3 @@ export const proteinItems: FoodItem[] = [
     popular: false,
   },
 ];
-

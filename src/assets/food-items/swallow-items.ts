@@ -13,16 +13,6 @@ export const swallowItems: FoodItem[] = [
     popular: false,
   },
   {
-    id: '24',
-    name: 'Eba',
-    description: '1 wrap of eba',
-    price: 500,
-    image: '/lovable-uploads/2e279a4b-b848-4df6-81f6-78b01f1e302e.png',
-    category: 'swallow',
-    tags: ['swallow', 'cassava', 'nigerian'],
-    popular: false,
-  },
-  {
     id: '25',
     name: 'Poundo',
     description: '1 wrap of poundo',

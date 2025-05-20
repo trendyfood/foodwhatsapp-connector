@@ -84,12 +84,12 @@ export const combosItems: FoodItem[] = [
   },
   {
     id: '38',
-    name: '3 Amala + Gbegiri & Ewedu + 1 goat Meat + Drink',
-    description: '2 full scoops of shaft/stalk with ofada rice and stew served with plantain beef and egg.',
-    price: 4500,
+    name: 'Amala & Abula with Fish',
+    description: '2 portion of amala with abula (gbegiri,ewedu with Titus or Kote)',
+    price: 3000,
     image: '/lovable-uploads/ec5d1d63-efdb-474b-87fc-9e35b0dc87c7.png',
     category: 'combos',
-    tags: ['amala', 'gbegiri', 'combo', 'nigerian'],
+    tags: ['amala', 'fish', 'combo', 'nigerian'],
     popular: false,
   },
 ];

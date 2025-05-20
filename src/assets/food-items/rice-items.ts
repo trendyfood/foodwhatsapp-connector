@@ -42,14 +42,4 @@ export const riceItems: FoodItem[] = [
     tags: ['rice', 'traditional', 'nigerian'],
     popular: false,
   },
-  {
-    id: '19',
-    name: 'Spaghetti',
-    description: 'Nigerian style spaghetti, cooked with tomato sauce and spices.',
-    price: 500,
-    image: '/lovable-uploads/spag.jpg',
-    category: 'rice',
-    tags: ['pasta', 'spicy', 'nigerian'],
-    popular: false,
-  },
 ];

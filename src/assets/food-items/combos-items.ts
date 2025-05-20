@@ -92,4 +92,14 @@ export const combosItems: FoodItem[] = [
     tags: ['amala', 'fish', 'combo', 'nigerian'],
     popular: false,
   },
+  {
+    id: '39',
+    name: 'Amala & Abula with Beef & Pomo',
+    description: 'Amala and abula served with beef and pomo',
+    price: 3500,
+    image: '/lovable-uploads/e291a007-ae98-4a23-b40f-bada85c4d212.png',
+    category: 'combos',
+    tags: ['amala', 'beef', 'pomo', 'combo', 'nigerian'],
+    popular: false,
+  },
 ];
